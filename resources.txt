@@ -1,0 +1,13 @@
+Nov 4th:
+https://learning.oreilly.com/attend/refactoring-to-java-streams-and-lambdas/0636920507567/0636920063585/
+
+Nov 3rd:
+https://learning.oreilly.com/attend/data-structures-in-java/0636920254768/0636920062956/
+
+Nov 1st:
+https://learning.oreilly.com/attend/mastering-threads-in-java/0636920431817/0636920063079/
+
+Dec 2nd:
+https://learning.oreilly.com/attend/design-patterns-in-java-deep-dive/0636920391081/0636920064225/
+
+Two new courses coming in January :-)
