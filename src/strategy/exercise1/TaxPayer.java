@@ -7,21 +7,18 @@
  */
 package strategy.exercise1;
 
+import java.util.*;
+
 public class TaxPayer {
-    public static final int COMPANY = 0;
-    public static final int EMPLOYEE = 1;
-    public static final int TRUST = 2;
+    public static final TaxStrategy COMPANY = new CompanyTaxStrategy();
+    public static final TaxStrategy EMPLOYEE = new EmployeeTaxStrategy();
+    public static final TaxStrategy TRUST = new TrustTaxStrategy();
 
     private final double income;
     private final TaxStrategy taxStrategy;
 
-    public TaxPayer(int type, double income) {
-        this.taxStrategy = switch(type) {
-            case COMPANY -> new CompanyTaxStrategy();
-            case EMPLOYEE -> new EmployeeTaxStrategy();
-            case TRUST -> new TrustTaxStrategy();
-            default -> throw new IllegalArgumentException();
-        };
+    public TaxPayer(TaxStrategy taxStrategy, double income) {
+        this.taxStrategy = Objects.requireNonNull(taxStrategy);
         this.income = income;
     }
 
