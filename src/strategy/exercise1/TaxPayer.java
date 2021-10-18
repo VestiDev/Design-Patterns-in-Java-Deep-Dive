@@ -17,9 +17,9 @@ public class TaxPayer {
 
     public TaxPayer(int type, double income) {
         this.taxStrategy = switch(type) {
-            case COMPANY -> new CompanyTaxStrategy(this);
-            case EMPLOYEE -> new EmployeeTaxStrategy(this);
-            case TRUST -> new TrustTaxStrategy(this);
+            case COMPANY -> new CompanyTaxStrategy();
+            case EMPLOYEE -> new EmployeeTaxStrategy();
+            case TRUST -> new TrustTaxStrategy();
             default -> throw new IllegalArgumentException();
         };
         this.income = income;
@@ -30,6 +30,6 @@ public class TaxPayer {
     }
 
     public double extortCash() {
-        return taxStrategy.extortCash();
+        return taxStrategy.extortCash(this);
     }
 }

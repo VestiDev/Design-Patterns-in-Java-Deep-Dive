@@ -11,13 +11,7 @@ package strategy.exercise1;
 public class CompanyTaxStrategy implements TaxStrategy {
     public static final double RATE = 0.30;
 
-    private final TaxPayer payer;
-
-    public CompanyTaxStrategy(TaxPayer payer) {
-        this.payer = payer;
-    }
-
-    public double extortCash() {
+    public double extortCash(TaxPayer payer) {
         return payer.getIncome() * RATE;
     }
 }
