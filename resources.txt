@@ -1,3 +1,8 @@
+Git Repository:
+
+https://safari2414:WmpIfSxS@www.javaspecialists.eu/git/safari/dpc5-2414.git
+(not browseable - use Git tool to get latest. My work is in the 'kabutz' branch)
+
 Nov 4th:
 https://learning.oreilly.com/attend/refactoring-to-java-streams-and-lambdas/0636920507567/0636920063585/
 
