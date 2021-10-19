@@ -15,26 +15,42 @@ import java.util.*;
  * whether there is a next element or not.
  */
 public class ContactIterator implements Iterator<Contact> {
-    private final Iterator<Contact> iterator;
-    public ContactIterator(Contact contact) {
-        Collection<Contact> leaves = new ArrayList<>();
-        recurse(contact, leaves);
-        this.iterator = List.copyOf(leaves).iterator();
-    }
+    private Contact nextContact;
+    private final Deque<Iterator<Contact>> unfinishedIterators
+        = new ArrayDeque<>();
 
-    private void recurse(Contact contact, Collection<Contact> leaves) {
-        if (contact.isLeaf()) leaves.add(contact);
-        else for (Contact child : leaves) {
-            recurse(child, leaves);
-        }
+    public ContactIterator(Contact contact) {
+        if (contact.isLeaf()) nextContact = contact;
+        else unfinishedIterators.addLast(contact.children());
     }
 
     public boolean hasNext() {
-        return iterator.hasNext();
+        if (nextContact == null) nextContact = findNextContact();
+        return nextContact != null;
+    }
+
+    private Contact findNextContact() {
+        while(!unfinishedIterators.isEmpty()) {
+            Iterator<Contact> lastUsedIterator = unfinishedIterators.peekLast();
+            if (lastUsedIterator.hasNext()) {
+                Contact contact = lastUsedIterator.next();
+                if (contact.isLeaf()) {
+                    return contact;
+                } else {
+                    unfinishedIterators.addLast(contact.children());
+                }
+            } else {
+                unfinishedIterators.removeLast();
+            }
+        }
+        return null;
     }
 
     public Contact next() {
-        return iterator.next();
+        if (!hasNext()) throw new NoSuchElementException();
+        Contact result = nextContact;
+        nextContact = null;
+        return result;
     }
 
     /**
