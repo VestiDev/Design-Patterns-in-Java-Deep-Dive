@@ -3,18 +3,23 @@
  * Dr Heinz Kabutz from JavaSpecialists.eu and may not be
  * distributed without written consent.
  *
- * Copyright 2001-2018, Heinz Kabutz, All rights reserved.
+ * Copyright 2001-2021, Heinz Kabutz, All rights reserved.
  */
-package command.exercise2;
 
-public class LightOffCommand implements Command {
+package command.exercise1;
+
+public class LightSwitch extends Switch {
     private final Light light;
 
-    public LightOffCommand(Light light) {
+    public LightSwitch(Light light) {
         this.light = light;
     }
 
-    public void execute() {
+    public void flipUp() {
+        light.turnOn();
+    }
+
+    public void flipDown() {
         light.turnOff();
     }
 }

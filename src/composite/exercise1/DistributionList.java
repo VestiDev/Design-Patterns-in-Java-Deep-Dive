@@ -25,4 +25,12 @@ public class DistributionList implements Contact {
             contact.sendMail(msg);
         }
     }
+
+    public boolean isLeaf() {
+        return false;
+    }
+
+    public Iterator<Contact> children() {
+        return contacts.iterator();
+    }
 }

@@ -12,10 +12,10 @@ public class SwitchFactory {
     }
 
     public static Switch make(Fan fan) {
-        throw new UnsupportedOperationException("todo");
+        return new FanSwitch(fan);
     }
 
     public static Switch make(Light light) {
-        throw new UnsupportedOperationException("todo");
+        return new LightSwitch(light);
     }
 }

@@ -5,16 +5,14 @@
  *
  * Copyright 2001-2018, Heinz Kabutz, All rights reserved.
  */
-package command.exercise2;
+package proxy.exercise1;
 
-public class FanStartRotateCommand implements Command {
-    private final Fan fan;
-
-    public FanStartRotateCommand(Fan fan) {
-        this.fan = fan;
+public class RealLutefisk implements Lutefisk {
+    public RealLutefisk() {
+        System.out.println("RealLutefisk created!");
     }
 
-    public void execute() {
-        fan.startRotate();
+    public void eat() {
+        System.out.println("You will regret eating me!");
     }
 }

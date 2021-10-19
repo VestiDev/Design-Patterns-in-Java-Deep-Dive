@@ -10,7 +10,7 @@ package composite.exercise1;
 //DON'T CHANGE
 public class MailClient {
     public static void main(String... args) {
-        var tjsn = new DistributionList();
+        Contact tjsn = new DistributionList();
         tjsn.add(new Person("john@aol.com"));
         var students = new DistributionList();
         students.add(new Person("peterz@intnet.mu"));

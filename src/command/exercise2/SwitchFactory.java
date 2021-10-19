@@ -7,21 +7,40 @@
  */
 package command.exercise2;
 
+import java.lang.invoke.*;
+import java.util.*;
+
 public class SwitchFactory {
+    private static final Map<Class<?>, MethodHandle> upMapping;
+
+    static {
+        try {
+            upMapping = Map.of(
+                Fan.class, MethodHandles.lookup().findVirtual(
+                    Fan.class, "startRotate", MethodType.methodType(void.class)),
+                Light.class, MethodHandles.lookup().findVirtual(
+                    Light.class, "turnOn", MethodType.methodType(void.class))
+            );
+        } catch (ReflectiveOperationException e) {
+            throw new Error(e);
+        }
+    }
+
+
     private SwitchFactory() {
     }
 
     public static Switch make(Fan fan) {
         return new Switch(
-            new FanStartRotateCommand(fan),
-            new FanStopRotateCommand(fan)
+            fan::startRotate,
+            fan::stopRotate
         );
     }
 
     public static Switch make(Light light) {
         return new Switch(
-            new LightOnCommand(light),
-            new LightOffCommand(light)
+            light::turnOn,
+            light::turnOff
         );
     }
 }

@@ -8,15 +8,17 @@
 package state.exercise1;
 
 public abstract class State {
-    public int pay(Employee employee) {
-        throw new UnsupportedOperationException("todo");
+    public int pay(StateModifier sm) {
+        return 0;
     }
 
-    public void advance(Employee employee) {
-        throw new UnsupportedOperationException("todo");
+    public void advance(StateModifier sm) {
     }
 
-    public void fire(Employee employee) {
-        throw new UnsupportedOperationException("todo");
+    public void fire(StateModifier sm) {
+    }
+
+    public interface StateModifier {
+        void setState(State state);
     }
 }

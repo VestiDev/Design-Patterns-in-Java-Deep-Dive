@@ -8,8 +8,6 @@
 package composite.solution1b;
 
 public abstract class AbstractLeafContact implements Contact {
-    public abstract void sendMail(String msg);
-
     public final boolean isLeaf() {
         return true;
     }

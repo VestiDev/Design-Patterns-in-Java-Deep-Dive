@@ -7,12 +7,6 @@
  */
 package proxy.exercise1;
 
-public class Lutefisk {
-    public Lutefisk() {
-        System.out.println("Lutefisk created!");
-    }
-
-    public void eat() {
-        System.out.println("You will regret eating me!");
-    }
+public interface Lutefisk {
+    void eat();
 }

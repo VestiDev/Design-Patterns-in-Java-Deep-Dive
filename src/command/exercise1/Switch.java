@@ -7,12 +7,9 @@
  */
 package command.exercise1;
 
-public final class Switch {
-    public void flipUp() {
-        throw new UnsupportedOperationException("todo");
-    }
+// Invoker
+public abstract class Switch {
+    public abstract void flipUp();
 
-    public void flipDown() {
-        throw new UnsupportedOperationException("todo");
-    }
+    public abstract void flipDown();
 }

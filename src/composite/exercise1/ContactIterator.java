@@ -15,16 +15,45 @@ import java.util.*;
  * whether there is a next element or not.
  */
 public class ContactIterator implements Iterator<Contact> {
+    private Contact nextContact;
+    private final Deque<Iterator<Contact>> unfinishedIterators
+        = new ArrayDeque<>();
+    private Iterator<Contact> lastUsedIterator;
+    private boolean nextCalled = false;
+
     public ContactIterator(Contact contact) {
-        throw new UnsupportedOperationException("todo");
+        if (contact.isLeaf()) nextContact = contact;
+        else unfinishedIterators.addLast(contact.children());
     }
 
     public boolean hasNext() {
-        throw new UnsupportedOperationException("todo");
+        if (nextContact == null) nextContact = findNextContact();
+        return nextContact != null;
+    }
+
+    private Contact findNextContact() {
+        while (!unfinishedIterators.isEmpty()) {
+            lastUsedIterator = unfinishedIterators.peekLast();
+            if (lastUsedIterator.hasNext()) {
+                Contact contact = lastUsedIterator.next();
+                if (contact.isLeaf()) {
+                    return contact;
+                } else {
+                    unfinishedIterators.addLast(contact.children());
+                }
+            } else {
+                unfinishedIterators.removeLast();
+            }
+        }
+        return null;
     }
 
     public Contact next() {
-        throw new UnsupportedOperationException("todo");
+        if (!hasNext()) throw new NoSuchElementException();
+        Contact result = nextContact;
+        nextContact = null;
+        nextCalled = true;
+        return result;
     }
 
     /**
@@ -33,6 +62,11 @@ public class ContactIterator implements Iterator<Contact> {
      * the composite tree structure.
      */
     public void remove() {
-        throw new UnsupportedOperationException("todo");
+        if (!nextCalled)
+            throw new IllegalStateException("next() not called");
+        if (lastUsedIterator == null)
+            throw new IllegalStateException("root node was a leaf");
+        lastUsedIterator.remove();
+        nextCalled = false;
     }
 }

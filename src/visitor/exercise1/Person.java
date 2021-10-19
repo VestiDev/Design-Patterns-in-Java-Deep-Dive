@@ -14,9 +14,11 @@ public class Person implements Contact {
         this.email = email;
     }
 
-    public void sendMail(String msg) {
-        System.out.println("To: " + email);
-        System.out.println("Msg: " + msg);
-        System.out.println();
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
