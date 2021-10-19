@@ -11,21 +11,19 @@ import java.util.*;
 import java.util.stream.*;
 
 public class RegexIterable<T> implements Iterable<T> {
-    private final Iterable<T> it;
-    private final String regex;
+    private final List<T> copy;
 
     // at construction, we build up a new list and add all those
     // objects whose toString() method matches the regular expression
     // Our iterator then simply walks over that list.  remove() should not be
     // allowed
     public RegexIterable(Iterable<T> it, String regex) {
-        this.it = it;
-        this.regex = regex;
+        this.copy = StreamSupport.stream(it.spliterator(), false)
+            .filter(o -> String.valueOf(o).matches(regex))
+            .toList();
     }
 
     public Iterator<T> iterator() {
-        return StreamSupport.stream(it.spliterator(), false)
-            .filter(o -> String.valueOf(o).matches(regex))
-            .iterator();
+        return copy.iterator();
     }
 }
