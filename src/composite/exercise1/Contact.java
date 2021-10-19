@@ -19,10 +19,10 @@ public interface Contact {
     void sendMail(String msg);
 
     default boolean isLeaf() {
-        throw new UnsupportedOperationException("todo");
+        return true;
     }
 
     default Iterator<Contact> children() {
-        throw new UnsupportedOperationException("todo");
+        return List.<Contact>of().iterator();
     }
 }

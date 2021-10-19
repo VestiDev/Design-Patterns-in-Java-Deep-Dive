@@ -15,16 +15,26 @@ import java.util.*;
  * whether there is a next element or not.
  */
 public class ContactIterator implements Iterator<Contact> {
+    private final Iterator<Contact> iterator;
     public ContactIterator(Contact contact) {
-        throw new UnsupportedOperationException("todo");
+        Collection<Contact> leaves = new ArrayList<>();
+        recurse(contact, leaves);
+        this.iterator = List.copyOf(leaves).iterator();
+    }
+
+    private void recurse(Contact contact, Collection<Contact> leaves) {
+        if (contact.isLeaf()) leaves.add(contact);
+        else for (Contact child : leaves) {
+            recurse(child, leaves);
+        }
     }
 
     public boolean hasNext() {
-        throw new UnsupportedOperationException("todo");
+        return iterator.hasNext();
     }
 
     public Contact next() {
-        throw new UnsupportedOperationException("todo");
+        return iterator.next();
     }
 
     /**
