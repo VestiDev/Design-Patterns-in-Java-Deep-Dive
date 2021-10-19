@@ -14,8 +14,6 @@ public abstract class AbstractCompositeContact implements Contact {
 
     public abstract void remove(Contact contact);
 
-    public abstract void sendMail(String msg);
-
     public final boolean isLeaf() {
         return false;
     }
