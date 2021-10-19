@@ -22,10 +22,6 @@ public class DistributionList implements Contact {
         contacts.remove(contact);
     }
 
-    public void sendMail(String msg) {
-        contacts.forEach(contact -> contact.sendMail(msg));
-    }
-
     public void accept(Visitor v) {
         v.visit(this);
         contacts.forEach(child -> child.accept(v));
