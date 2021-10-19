@@ -14,20 +14,21 @@ package state.exercise1;
  */
 public class Employee {
     private State state = new ProgrammerState();
+    private final State.StateModifier sm = this::setState;
 
     public int pay() {
-        return state.pay(this);
+        return state.pay(sm);
     }
 
     public void advance() {
-        state.advance(this);
+        state.advance(sm);
     }
 
     public void fire() {
-        state.fire(this);
+        state.fire(sm);
     }
 
-    public void setState(State state) {
+    private void setState(State state) {
         System.out.println(this.state + " -> " + state);
         this.state = state;
     }

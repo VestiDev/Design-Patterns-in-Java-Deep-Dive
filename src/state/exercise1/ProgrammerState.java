@@ -8,19 +8,17 @@
 
 package state.exercise1;
 
-import state.solution1.*;
-
 public class ProgrammerState extends State {
-    public int pay(Employee employee) {
+    public int pay(StateModifier sm) {
         System.out.println("Programmer getting paid");
         return 3000;
     }
 
-    public void advance(Employee employee) {
-        employee.setState(new ManagerState());
+    public void advance(StateModifier sm) {
+        sm.setState(new ManagerState());
     }
 
-    public void fire(Employee employee) {
-        employee.setState(new EndState());
+    public void fire(StateModifier sm) {
+        sm.setState(new EndState());
     }
 }
