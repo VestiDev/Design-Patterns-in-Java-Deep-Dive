@@ -8,19 +8,8 @@
 package command.exercise1;
 
 // Invoker
-public final class Switch {
-    private final Command up, down;
+public abstract class Switch {
+    public abstract void flipUp();
 
-    public Switch(Command up, Command down) {
-        this.up = up;
-        this.down = down;
-    }
-
-    public void flipUp() {
-        up.execute();
-    }
-
-    public void flipDown() {
-        down.execute();
-    }
+    public abstract void flipDown();
 }
