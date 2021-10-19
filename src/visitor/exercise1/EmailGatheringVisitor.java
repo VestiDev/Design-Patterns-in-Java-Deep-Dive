@@ -30,4 +30,8 @@ public class EmailGatheringVisitor implements Visitor, Iterable<String> {
     public void visit(DistributionList distributionList) {
         // do nothing
     }
+
+    public void visit(WhatsAppContact whatsAppContact) {
+        // do nothing
+    }
 }

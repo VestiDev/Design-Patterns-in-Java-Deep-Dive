@@ -12,4 +12,6 @@ public interface Visitor {
     void visit(Person person);
 
     void visit(DistributionList distributionList);
+
+    void visit(WhatsAppContact whatsAppContact);
 }

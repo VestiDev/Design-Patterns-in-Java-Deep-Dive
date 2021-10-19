@@ -43,4 +43,8 @@ public class CountingVisitor implements Visitor {
     public void visit(DistributionList distributionList) {
         compositeStatistics.add(distributionList.getNumberOfChildren());
     }
+
+    public void visit(WhatsAppContact whatsAppContact) {
+        leaves++;
+    }
 }

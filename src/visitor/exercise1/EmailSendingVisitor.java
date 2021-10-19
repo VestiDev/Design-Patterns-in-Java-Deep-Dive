@@ -24,4 +24,8 @@ public class EmailSendingVisitor implements Visitor {
     public void visit(DistributionList distributionList) {
         // do nothing
     }
+
+    public void visit(WhatsAppContact whatsAppContact) {
+        // do nothing
+    }
 }
