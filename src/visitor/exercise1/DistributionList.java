@@ -25,4 +25,13 @@ public class DistributionList implements Contact {
     public void sendMail(String msg) {
         contacts.forEach(contact -> contact.sendMail(msg));
     }
+
+    public void accept(Visitor v) {
+        v.visit(this);
+        contacts.forEach(child -> child.accept(v));
+    }
+
+    public int getNumberOfChildren() {
+        return contacts.size();
+    }
 }

@@ -11,4 +11,5 @@ public interface Contact {
     default void add(Contact contact) { }
     default void remove(Contact contact) { }
     void sendMail(String msg);
+    void accept(Visitor v);
 }
