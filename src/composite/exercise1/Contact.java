@@ -23,6 +23,6 @@ public interface Contact {
     }
 
     default Iterator<Contact> children() {
-        return List.<Contact>of().iterator();
+        return Collections.emptyIterator();
     }
 }
