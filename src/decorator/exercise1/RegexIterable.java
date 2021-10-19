@@ -7,12 +7,25 @@
  */
 package decorator.exercise1;
 
-public class RegexIterable<T> {
+import java.util.*;
+import java.util.stream.*;
+
+public class RegexIterable<T> implements Iterable<T> {
+    private final Iterable<T> it;
+    private final String regex;
+
     // at construction, we build up a new list and add all those
     // objects whose toString() method matches the regular expression
     // Our iterator then simply walks over that list.  remove() should not be
     // allowed
     public RegexIterable(Iterable<T> it, String regex) {
-        throw new UnsupportedOperationException("todo");
+        this.it = it;
+        this.regex = regex;
+    }
+
+    public Iterator<T> iterator() {
+        return StreamSupport.stream(it.spliterator(), false)
+            .filter(o -> String.valueOf(o).matches(regex))
+            .iterator();
     }
 }
